@@ -1,0 +1,57 @@
+{
+    "name": "safeguard-ai",
+    "version": "1.0.0",
+    "description": "AI content moderation, PII detection, and safety toolkit for developers. Filter toxic content, detect personal information, and ensure GDPR compliance in your AI applications.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "test": "jest",
+        "build": "tsc",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "ai",
+        "moderation",
+        "content-filter",
+        "toxic-content",
+        "pii-detection",
+        "content-safety",
+        "openai",
+        "chatgpt",
+        "claude",
+        "content-moderation",
+        "profanity-filter",
+        "hate-speech",
+        "nsfw",
+        "gdpr",
+        "compliance",
+        "safety",
+        "ai-safety",
+        "llm",
+        "content-filtering"
+    ],
+    "author": "Mehul Birare",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^29.5.3",
+        "@types/node": "^18.16.19",
+        "jest": "^29.6.1",
+        "ts-jest": "^29.1.1",
+        "typescript": "^5.1.6"
+    },
+    "dependencies": {
+        "axios": "^1.4.0",
+        "dotenv": "^16.3.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Mehulbirare/ai-safety-toolkit"
+    },
+    "bugs": {
+        "url": "https://github.com/Mehulbirare/ai-safety-toolkit/issues"
+    },
+    "homepage": "https://github.com/Mehulbirare/ai-safety-toolkit#readme"
+}

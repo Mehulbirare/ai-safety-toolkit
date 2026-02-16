@@ -1,0 +1,29 @@
+# Source files
+src/
+tests/
+examples/
+
+# Config files
+tsconfig.json
+jest.config.js
+.env
+.env.*
+
+# Documentation (keep README)
+docs/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# CI/CD
+.github/
+
+# Misc
+*.log
+coverage/
+node_modules/
