@@ -1,5 +1,17 @@
 #!/usr/bin/env node
 
+/**
+ * Documentation HTML Generator
+ * 
+ * This script converts Markdown documentation files to HTML with styled navigation.
+ * 
+ * Requirements:
+ * - Node.js 20+ (required by marked library)
+ * - marked npm package
+ * 
+ * Note: End users don't need to run this script. HTML files are pre-generated.
+ */
+
 const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');

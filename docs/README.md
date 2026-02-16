@@ -71,8 +71,10 @@ All pages share a consistent dark theme styling with:
 ## Dependencies
 
 The conversion script requires:
-- Node.js 14+
+- Node.js 20+ (for the `marked` library)
 - `marked` library (installed via npm)
+
+**Note:** End users don't need Node 20+ to use SafeguardAI. The Node 20+ requirement only applies if you want to regenerate HTML from Markdown files. The pre-generated HTML files are included in the repository and can be viewed in any browser.
 
 ```bash
 npm install marked --save-dev
