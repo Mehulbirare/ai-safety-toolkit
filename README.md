@@ -29,9 +29,23 @@ if (!result.safe) {
 
 ## 📖 Documentation
 
+- **[🌐 View Documentation Website](docs/index.html)** - Interactive documentation with navigation
 - **[📘 Getting Started Guide](docs/GETTING_STARTED.md)** - Complete setup and integration guide
 - **[⚡ Quick Reference](docs/QUICK_REFERENCE.md)** - Cheat sheet for common operations
 - **[📚 API Documentation](docs/API.md)** - Detailed API reference
+
+### Viewing Documentation Locally
+
+The documentation is available as both Markdown files and a styled HTML website:
+
+```bash
+# Open the HTML documentation in your browser
+open docs/index.html
+
+# Or serve it with a local web server
+cd docs && python3 -m http.server 8000
+# Then visit http://localhost:8000
+```
 
 ## 🚀 Features
 
