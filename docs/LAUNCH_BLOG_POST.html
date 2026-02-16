@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ Announcing SafeguardAI: The Ultimate Safety Toolkit for LLM Applications - SafeguardAI Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-primary: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.1);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .home-link {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        p code, li code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #79c0ff;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* Checkboxes (for task lists) */
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            pre {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-halved"></i>
+                SafeguardAI
+            </div>
+            
+        <div class="doc-nav">
+            <a href="index.html" class="nav-link home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="GETTING_STARTED.html" class="nav-link ">GETTING STARTED</a>
+            <a href="API.html" class="nav-link ">API</a>
+            <a href="POST_INSTALL_GUIDE.html" class="nav-link ">POST INSTALL GUIDE</a>
+            <a href="QUICK_REFERENCE.html" class="nav-link ">QUICK REFERENCE</a>
+            <a href="PRICING_MODEL.html" class="nav-link ">PRICING MODEL</a>
+            <a href="LAUNCH_BLOG_POST.html" class="nav-link active">LAUNCH BLOG POST</a>
+        </div>
+    
+        </aside>
+        <main class="main-content">
+            <article class="doc-content">
+                <h1>🛡️ Announcing SafeguardAI: The Ultimate Safety Toolkit for LLM Applications</h1>
+<p>In the rapidly evolving world of Generative AI, building a powerful application is only half the battle. The other half? <strong>Keeping it safe, compliant, and trustworthy.</strong></p>
+<p>As developers, we’ve all faced the same challenges: </p>
+<ul>
+<li>How do we keep toxic content out of our AI chat interfaces?</li>
+<li>How do we ensure users aren&#39;t accidentally leaking PII (Personally Identifiable Information)?</li>
+<li>How do we comply with strict regulations like GDPR or HIPAA without spending weeks on custom moderation logic?</li>
+</ul>
+<p>Today, I’m excited to announce the launch of <strong>SafeguardAI</strong>—a high-performance, developer-first toolkit designed to solve these problems in seconds.</p>
+<hr>
+<h2>🚀 What is SafeguardAI?</h2>
+<p><strong>SafeguardAI</strong> is an all-in-one NPM package that provides context-aware content moderation, automatic PII detection, and custom safety rule enforcement for AI-driven applications. </p>
+<p>Whether you’re building a customer support bot, an AI-powered content platform, or integrating LLMs into your enterprise workflow, SafeguardAI acts as a &quot;smart gatekeeper&quot; between your users and your AI.</p>
+<h2>🌟 Key Features</h2>
+<h3>1. Advanced Text Moderation</h3>
+<p>Leveraging cutting-edge AI models, SafeguardAI detects toxicity, hate speech, violence, and sexual content with high precision. It doesn&#39;t just block—it provides severity scores and detailed categories.</p>
+<h3>2. Built-in PII Detection &amp; Redaction</h3>
+<p>Protect user privacy by automatically detecting and masking emails, phone numbers, SSNs, credit cards, and more. Our hybrid engine processes most patterns locally for maximum speed and privacy.</p>
+<h3>3. Custom Safety Rules</h3>
+<p>Every business is unique. With SafeguardAI, you can add your own blocked words and custom regex patterns to enforce brand safety and internal compliance.</p>
+<h3>4. Provider Agnostic</h3>
+<p>While we ship with a powerful OpenAI integration, our architecture is built for the future. You can easily plug in other providers like Azure, AWS, or Perspective API.</p>
+<hr>
+<h2>💎 The SafeguardAI Advantage</h2>
+<p>Why use SafeguardAI instead of building your own moderation logic?</p>
+<ul>
+<li><strong>Unified Stack</strong>: Stop juggling three different libraries. We handle moderation, PII, and custom rules in one package.</li>
+<li><strong>Privacy-First</strong>: PII detection happens locally, so sensitive data never has to leave your server unless you want it to.</li>
+<li><strong>Developer Experience</strong>: Written in TypeScript with full type safety and zero-config defaults.</li>
+</ul>
+<hr>
+<h2>⚡ Quick Start</h2>
+<p>Installing SafeguardAI is as simple as:</p>
+<pre><code class="language-bash">npm install safeguard-ai
+</code></pre>
+<p>Getting your first safety check running takes less than a minute:</p>
+<pre><code class="language-javascript">const SafeguardAI = require(&#39;safeguard-ai&#39;);
+const moderator = new SafeguardAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const result = await moderator.checkText(&quot;Check this message for safety.&quot;);
+
+if (result.flagged) {
+  console.log(&quot;⚠️ Flagged Categories:&quot;, result.categories);
+} else {
+  console.log(&quot;✅ Safe to proceed!&quot;);
+}
+</code></pre>
+<hr>
+<h2>🛡️ Protecting Your Business, Empowering Your Users</h2>
+<p>AI safety isn&#39;t just about blocking &quot;bad words.&quot; It&#39;s about building <strong>trust</strong>. By implementing SafeguardAI, you&#39;re telling your users that their privacy matters and their experience will be safe.</p>
+<p>Moreover, it helps you:</p>
+<ul>
+<li><strong>Reduce Costs</strong>: Automate 99% of moderation tasks.</li>
+<li><strong>Ensure Compliance</strong>: Meet legal requirements (GDPR/HIPAA) out of the box.</li>
+<li><strong>Scale Faster</strong>: Focus on your core AI features while we handle the safety logic.</li>
+</ul>
+<hr>
+<h2>🤝 Join the Journey</h2>
+<p>SafeguardAI is open-source and we’re just getting started. I’d love for you to try it out, break it, and help us make it better.</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/Mehulbirare/ai-safety-toolkit">Mehulbirare/ai-safety-toolkit</a> (Give us a ⭐️!)</li>
+<li><strong>NPM</strong>: <a href="https://www.npmjs.com/package/safeguard-ai">safeguard-ai</a></li>
+<li><strong>Documentation</strong>: Explore our full <a href="https://github.com/Mehulbirare/ai-safety-toolkit/blob/main/docs/GETTING_STARTED.md">Getting Started Guide</a></li>
+</ul>
+<p>Let’s build a safer AI future, together. 🛡️✨</p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeguardAI Pricing Model - SafeguardAI Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-primary: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.1);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .home-link {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        p code, li code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #79c0ff;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* Checkboxes (for task lists) */
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            pre {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-halved"></i>
+                SafeguardAI
+            </div>
+            
+        <div class="doc-nav">
+            <a href="index.html" class="nav-link home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="GETTING_STARTED.html" class="nav-link ">GETTING STARTED</a>
+            <a href="API.html" class="nav-link ">API</a>
+            <a href="POST_INSTALL_GUIDE.html" class="nav-link ">POST INSTALL GUIDE</a>
+            <a href="QUICK_REFERENCE.html" class="nav-link ">QUICK REFERENCE</a>
+            <a href="PRICING_MODEL.html" class="nav-link active">PRICING MODEL</a>
+            <a href="LAUNCH_BLOG_POST.html" class="nav-link ">LAUNCH BLOG POST</a>
+        </div>
+    
+        </aside>
+        <main class="main-content">
+            <article class="doc-content">
+                <h1>SafeguardAI Pricing Model</h1>
+<h2>Overview</h2>
+<p>SafeguardAI offers a flexible pricing model to accommodate different usage levels and needs.</p>
+<h2>Pricing Tiers</h2>
+<h3>🆓 Free Tier (Open Source)</h3>
+<p><strong>Price</strong>: $0/month</p>
+<p><strong>Includes</strong>:</p>
+<ul>
+<li>PII Detection (unlimited)</li>
+<li>Custom Rules Engine (unlimited)</li>
+<li>Bring Your Own API Key (BYOK) for OpenAI, Perspective, Azure</li>
+<li>Community support via GitHub issues</li>
+<li>Basic documentation</li>
+</ul>
+<p><strong>Best for</strong>: </p>
+<ul>
+<li>Individual developers</li>
+<li>Small projects</li>
+<li>Open-source projects</li>
+<li>Learning and experimentation</li>
+</ul>
+<hr>
+<h3>🚀 Pro Tier (Managed Service)</h3>
+<p><strong>Price</strong>: $29/month</p>
+<p><strong>Includes</strong>:</p>
+<ul>
+<li>Everything in Free tier</li>
+<li><strong>10,000 API calls/month</strong> included (using our managed API keys)</li>
+<li>Multi-provider fallback</li>
+<li>Priority support (email)</li>
+<li>Advanced analytics dashboard</li>
+<li>Rate limiting and caching</li>
+<li>99.9% uptime SLA</li>
+</ul>
+<p><strong>Overage</strong>: $0.005 per additional API call</p>
+<p><strong>Best for</strong>:</p>
+<ul>
+<li>Growing startups</li>
+<li>Production applications</li>
+<li>Teams building AI products</li>
+</ul>
+<hr>
+<h3>💼 Business Tier</h3>
+<p><strong>Price</strong>: $199/month</p>
+<p><strong>Includes</strong>:</p>
+<ul>
+<li>Everything in Pro tier</li>
+<li><strong>100,000 API calls/month</strong> included</li>
+<li>Custom compliance rules (HIPAA, PCI-DSS, SOC2)</li>
+<li>Advanced image moderation</li>
+<li>Batch processing (up to 1000 items)</li>
+<li>Priority email &amp; chat support</li>
+<li>Custom integrations</li>
+<li>White-label options</li>
+</ul>
+<p><strong>Overage</strong>: $0.003 per additional API call</p>
+<p><strong>Best for</strong>:</p>
+<ul>
+<li>Established businesses</li>
+<li>Healthcare/Financial apps</li>
+<li>High-volume applications</li>
+<li>Compliance-critical industries</li>
+</ul>
+<hr>
+<h3>🏢 Enterprise Tier</h3>
+<p><strong>Price</strong>: Custom</p>
+<p><strong>Includes</strong>:</p>
+<ul>
+<li>Everything in Business tier</li>
+<li><strong>Unlimited API calls</strong></li>
+<li>Dedicated infrastructure</li>
+<li>Custom AI model training</li>
+<li>On-premise deployment option</li>
+<li>SLA with guaranteed uptime</li>
+<li>24/7 phone support</li>
+<li>Custom compliance audits</li>
+<li>Dedicated account manager</li>
+</ul>
+<p><strong>Best for</strong>:</p>
+<ul>
+<li>Large enterprises</li>
+<li>Mission-critical applications</li>
+<li>Custom compliance requirements</li>
+<li>High security needs</li>
+</ul>
+<hr>
+<h2>Add-ons</h2>
+<h3>Image Moderation</h3>
+<ul>
+<li>Free tier: BYOK only</li>
+<li>Pro: $0.01 per image</li>
+<li>Business: $0.005 per image</li>
+<li>Enterprise: Included</li>
+</ul>
+<h3>Advanced Analytics Dashboard</h3>
+<ul>
+<li>Free: Not available</li>
+<li>Pro: Included</li>
+<li>Business: Advanced features</li>
+<li>Enterprise: Custom dashboards</li>
+</ul>
+<h3>Custom Model Training</h3>
+<ul>
+<li>Enterprise only: Custom pricing</li>
+</ul>
+<hr>
+<h2>API Call Pricing Breakdown</h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Included Calls</th>
+<th>Cost per Additional Call</th>
+<th>Estimated Savings vs BYOK</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Free</td>
+<td>0</td>
+<td>N/A (BYOK)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Pro</td>
+<td>10,000</td>
+<td>$0.005</td>
+<td>~40%</td>
+</tr>
+<tr>
+<td>Business</td>
+<td>100,000</td>
+<td>$0.003</td>
+<td>~50%</td>
+</tr>
+<tr>
+<td>Enterprise</td>
+<td>Unlimited</td>
+<td>Included</td>
+<td>~60%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Comparison with BYOK (Bring Your Own Key)</h2>
+<h3>OpenAI Moderation API</h3>
+<ul>
+<li><strong>Direct cost</strong>: ~$0.002 per request</li>
+<li><strong>SafeguardAI adds</strong>: PII detection, custom rules, caching, fallback</li>
+</ul>
+<h3>Your Savings with SafeguardAI Pro</h3>
+<ul>
+<li>Direct OpenAI: $0.002/call × 10,000 = <strong>$20</strong> + manual PII implementation</li>
+<li>SafeguardAI Pro: <strong>$29</strong> with PII, rules, caching, support</li>
+<li><strong>Value</strong>: $20+ in savings on implementation + ongoing maintenance</li>
+</ul>
+<hr>
+<h2>Why Pay for SafeguardAI?</h2>
+<h3>1. <strong>Convenience</strong></h3>
+<ul>
+<li>No need to manage multiple API keys</li>
+<li>Automatic fallback between providers</li>
+<li>Built-in caching reduces costs</li>
+</ul>
+<h3>2. <strong>Comprehensive Safety</strong></h3>
+<ul>
+<li>AI moderation + PII detection + custom rules</li>
+<li>All-in-one solution vs. building from scratch</li>
+</ul>
+<h3>3. <strong>Support &amp; Reliability</strong></h3>
+<ul>
+<li>Priority support</li>
+<li>SLA guarantees</li>
+<li>Regular updates and improvements</li>
+</ul>
+<h3>4. <strong>Cost Savings</strong></h3>
+<ul>
+<li>Volume discounts</li>
+<li>Caching reduces duplicate calls</li>
+<li>Multi-provider reduces failures</li>
+</ul>
+<hr>
+<h2>Getting Started</h2>
+<h3>For Open Source (Free)</h3>
+<pre><code class="language-bash">npm install safeguard-ai
+</code></pre>
+<p>Use with your own API keys.</p>
+<h3>For Managed Service (Pro/Business)</h3>
+<ol>
+<li>Sign up at safeguard-ai.dev</li>
+<li>Get your SafeguardAI API key</li>
+<li>Use without managing individual provider keys</li>
+</ol>
+<h3>For Enterprise</h3>
+<p>Contact <a href="mailto:sales@safeguard-ai.dev">sales@safeguard-ai.dev</a></p>
+<hr>
+<h2>Frequently Asked Questions</h2>
+<p><strong>Q: Can I switch between tiers?</strong><br>A: Yes, upgrade or downgrade anytime. Prorated billing applies.</p>
+<p><strong>Q: What happens if I exceed my monthly limit?</strong><br>A: Overage charges apply automatically. Set spending limits in dashboard.</p>
+<p><strong>Q: Do you offer discounts for startups/nonprofits?</strong><br>A: Yes! Contact us for special pricing.</p>
+<p><strong>Q: Can I use the free tier in production?</strong><br>A: Yes, with BYOK you can use it anywhere. Managed service recommended for reliability.</p>
+<p><strong>Q: Is there a trial period?</strong><br>A: Pro and Business tiers include 14-day free trial.</p>
+<hr>
+<h2>Notes for Package Developers</h2>
+<p>Since SafeguardAI is an <strong>open-source npm package</strong>, the free tier (BYOK) will always be available. The managed service tiers are <strong>optional</strong> for users who want:</p>
+<ul>
+<li>Convenience (no API key management)</li>
+<li>Better pricing at scale</li>
+<li>Support and SLAs</li>
+<li>Advanced features</li>
+</ul>
+<p>This model is similar to:</p>
+<ul>
+<li><strong>Stripe</strong> (free SDK, paid processing)</li>
+<li><strong>Auth0</strong> (free SDK, paid auth service)</li>
+<li><strong>Sentry</strong> (free SDK, paid error tracking)</li>
+</ul>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>
