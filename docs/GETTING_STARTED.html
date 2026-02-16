@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Getting Started with SafeguardAI - SafeguardAI Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-primary: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.1);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .home-link {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        p code, li code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #79c0ff;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* Checkboxes (for task lists) */
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            pre {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-halved"></i>
+                SafeguardAI
+            </div>
+            
+        <div class="doc-nav">
+            <a href="index.html" class="nav-link home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="GETTING_STARTED.html" class="nav-link active">GETTING STARTED</a>
+            <a href="API.html" class="nav-link ">API</a>
+            <a href="POST_INSTALL_GUIDE.html" class="nav-link ">POST INSTALL GUIDE</a>
+            <a href="QUICK_REFERENCE.html" class="nav-link ">QUICK REFERENCE</a>
+            <a href="PRICING_MODEL.html" class="nav-link ">PRICING MODEL</a>
+            <a href="LAUNCH_BLOG_POST.html" class="nav-link ">LAUNCH BLOG POST</a>
+        </div>
+    
+        </aside>
+        <main class="main-content">
+            <article class="doc-content">
+                <h1>🚀 Getting Started with SafeguardAI</h1>
+<p>A comprehensive guide for implementing SafeguardAI in your projects after installation.</p>
+<h2>📋 Table of Contents</h2>
+<ol>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#initial-setup">Initial Setup</a></li>
+<li><a href="#quick-start-guide">Quick Start Guide</a></li>
+<li><a href="#common-use-cases">Common Use Cases</a></li>
+<li><a href="#configuration-options">Configuration Options</a></li>
+<li><a href="#integration-patterns">Integration Patterns</a></li>
+<li><a href="#testing-your-implementation">Testing Your Implementation</a></li>
+<li><a href="#production-checklist">Production Checklist</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr>
+<h2>Prerequisites</h2>
+<p>Before using SafeguardAI, ensure you have:</p>
+<ul>
+<li><strong>Node.js</strong>: Version 14.x or higher</li>
+<li><strong>npm</strong>: Version 6.x or higher (or yarn/pnpm)</li>
+<li><strong>OpenAI API Key</strong>: Required for content moderation features<ul>
+<li>Get your API key from <a href="https://platform.openai.com/api-keys">OpenAI Platform</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install safeguard-ai
+</code></pre>
+<p>Or with yarn:</p>
+<pre><code class="language-bash">yarn add safeguard-ai
+</code></pre>
+<p>Or with pnpm:</p>
+<pre><code class="language-bash">pnpm add safeguard-ai
+</code></pre>
+<hr>
+<h2>Initial Setup</h2>
+<h3>Step 1: Create Environment File</h3>
+<p>Create a <code>.env</code> file in your project root to store your API key securely:</p>
+<pre><code class="language-bash"># .env
+OPENAI_API_KEY=your-openai-api-key-here
+</code></pre>
+<p><strong>Important</strong>: Add <code>.env</code> to your <code>.gitignore</code> to avoid committing sensitive credentials:</p>
+<pre><code class="language-bash"># .gitignore
+.env
+node_modules/
+</code></pre>
+<h3>Step 2: Install dotenv (if not already installed)</h3>
+<p>To load environment variables, install <code>dotenv</code>:</p>
+<pre><code class="language-bash">npm install dotenv
+</code></pre>
+<h3>Step 3: Create Your First SafeguardAI Instance</h3>
+<p>Create a new file (e.g., <code>safeguard.js</code> or <code>safeguard.ts</code>):</p>
+<p><strong>JavaScript:</strong></p>
+<pre><code class="language-javascript">// safeguard.js
+const SafeguardAI = require(&#39;safeguard-ai&#39;);
+require(&#39;dotenv&#39;).config();
+
+const moderator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    providers: [&#39;openai&#39;],
+    strictness: &#39;medium&#39;,
+    redactPII: true
+});
+
+module.exports = moderator;
+</code></pre>
+<p><strong>TypeScript:</strong></p>
+<pre><code class="language-typescript">// safeguard.ts
+import SafeguardAI from &#39;safeguard-ai&#39;;
+import * as dotenv from &#39;dotenv&#39;;
+
+dotenv.config();
+
+const moderator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    providers: [&#39;openai&#39;],
+    strictness: &#39;medium&#39;,
+    redactPII: true
+});
+
+export default moderator;
+</code></pre>
+<hr>
+<h2>Quick Start Guide</h2>
+<h3>Example 1: Basic Text Moderation</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+async function checkMessage(userMessage) {
+    try {
+        const result = await moderator.checkText(userMessage);
+        
+        if (!result.safe) {
+            console.log(&#39;⚠️ Content flagged!&#39;);
+            console.log(&#39;Categories:&#39;, result.categories);
+            console.log(&#39;Suggestions:&#39;, result.suggestions);
+            return { allowed: false, reason: &#39;Content policy violation&#39; };
+        }
+        
+        console.log(&#39;✅ Content is safe&#39;);
+        return { allowed: true, cleanText: result.cleanText };
+        
+    } catch (error) {
+        console.error(&#39;Moderation error:&#39;, error);
+        return { allowed: false, reason: &#39;Moderation service unavailable&#39; };
+    }
+}
+
+// Test it
+checkMessage(&quot;Hello! This is a friendly message.&quot;);
+</code></pre>
+<h3>Example 2: Detecting and Redacting PII</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+async function processSupportTicket(ticketContent) {
+    const result = await moderator.checkText(ticketContent);
+    
+    if (result.piiDetected.length &gt; 0) {
+        console.log(&#39;🔒 PII Detected:&#39;);
+        result.piiDetected.forEach(pii =&gt; {
+            console.log(`- ${pii.type}: ${pii.value}`);
+        });
+        
+        // Use the cleaned text without PII
+        return result.cleanText;
+    }
+    
+    return ticketContent;
+}
+
+// Test with PII
+processSupportTicket(&quot;Contact me at john.doe@example.com or call 555-123-4567&quot;);
+// Output: &quot;Contact me at [REDACTED_EMAIL] or call [REDACTED_PHONE]&quot;
+</code></pre>
+<h3>Example 3: Adding Custom Blocked Words</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+// Add industry-specific blocked words
+moderator.rules.addBlockedWords([
+    &#39;competitor-name&#39;,
+    &#39;internal-project&#39;,
+    &#39;confidential&#39;
+]);
+
+async function checkComment(comment) {
+    const result = await moderator.checkText(comment);
+    
+    if (result.flagged) {
+        console.log(&#39;⛔ Comment blocked&#39;);
+        console.log(&#39;Reasons:&#39;, result.suggestions);
+    }
+}
+
+checkComment(&quot;Don&#39;t share our internal-project details!&quot;);
+</code></pre>
+<hr>
+<h2>Common Use Cases</h2>
+<h3>Use Case 1: AI Chatbot Integration</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+async function chatbot(userMessage) {
+    // Step 1: Check user input
+    const inputCheck = await moderator.checkText(userMessage);
+    
+    if (!inputCheck.safe) {
+        return {
+            reply: &quot;I cannot process messages containing inappropriate content.&quot;,
+            flagged: true
+        };
+    }
+    
+    // Step 2: Process with your AI (OpenAI, Claude, etc.)
+    const aiResponse = await yourAIProvider.generateResponse(inputCheck.cleanText);
+    
+    // Step 3: Check AI output (optional but recommended)
+    const outputCheck = await moderator.checkText(aiResponse);
+    
+    return {
+        reply: outputCheck.cleanText,
+        flagged: false
+    };
+}
+</code></pre>
+<h3>Use Case 2: Express.js API Endpoint</h3>
+<pre><code class="language-javascript">const express = require(&#39;express&#39;);
+const moderator = require(&#39;./safeguard&#39;);
+
+const app = express();
+app.use(express.json());
+
+// Middleware for content moderation
+async function moderationMiddleware(req, res, next) {
+    if (!req.body.content) return next();
+    
+    try {
+        const result = await moderator.checkText(req.body.content);
+        
+        if (!result.safe) {
+            return res.status(400).json({
+                error: &#39;Content violates our policies&#39;,
+                categories: result.categories,
+                suggestions: result.suggestions
+            });
+        }
+        
+        // Attach cleaned content
+        req.body.cleanContent = result.cleanText;
+        req.moderationResult = result;
+        next();
+        
+    } catch (error) {
+        console.error(&#39;Moderation error:&#39;, error);
+        // Decide: fail closed (reject) or fail open (allow)
+        next(); // or return res.status(500).json({ error: &#39;Moderation unavailable&#39; });
+    }
+}
+
+// Apply to specific routes
+app.post(&#39;/api/comments&#39;, moderationMiddleware, (req, res) =&gt; {
+    // Save the cleaned content
+    res.json({
+        message: &#39;Comment posted successfully&#39;,
+        content: req.body.cleanContent
+    });
+});
+
+app.listen(3000, () =&gt; console.log(&#39;Server running on port 3000&#39;));
+</code></pre>
+<h3>Use Case 3: User-Generated Content Platform</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+// Configure for strict moderation
+const strictModerator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    strictness: &#39;high&#39;,
+    redactPII: true
+});
+
+async function submitPost(postData) {
+    // Check title
+    const titleCheck = await strictModerator.checkText(postData.title);
+    
+    // Check content
+    const contentCheck = await strictModerator.checkText(postData.content);
+    
+    if (!titleCheck.safe || !contentCheck.safe) {
+        return {
+            success: false,
+            errors: {
+                title: titleCheck.safe ? null : titleCheck.suggestions,
+                content: contentCheck.safe ? null : contentCheck.suggestions
+            }
+        };
+    }
+    
+    // Save post with cleaned content
+    return {
+        success: true,
+        post: {
+            title: titleCheck.cleanText,
+            content: contentCheck.cleanText
+        }
+    };
+}
+</code></pre>
+<h3>Use Case 4: Healthcare/HIPAA Compliance</h3>
+<pre><code class="language-javascript">const moderator = require(&#39;./safeguard&#39;);
+
+// Add custom patterns for medical IDs
+moderator.rules.addPattern(/MRN-\d{8}/g, &#39;MEDICAL_RECORD_NUMBER&#39;);
+moderator.rules.addPattern(/\b\d{3}-\d{2}-\d{4}\b/g, &#39;SSN&#39;);
+
+async function sanitizeHealthcareData(patientNote) {
+    const result = await moderator.checkText(patientNote);
+    
+    // Log detected PII types (for compliance reporting)
+    if (result.piiDetected.length &gt; 0) {
+        console.log(&#39;PII Redaction Report:&#39;);
+        result.piiDetected.forEach(pii =&gt; {
+            console.log(`- Redacted ${pii.type} at position ${pii.position}`);
+        });
+    }
+    
+    // Return fully sanitized text
+    return result.cleanText;
+}
+</code></pre>
+<hr>
+<h2>Configuration Options</h2>
+<h3>Strictness Levels</h3>
+<pre><code class="language-javascript">// Low strictness - Only blocks highly problematic content
+const lowModerator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    strictness: &#39;low&#39;
+});
+
+// Medium strictness - Balanced approach (default)
+const mediumModerator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    strictness: &#39;medium&#39;
+});
+
+// High strictness - Very strict filtering
+const highModerator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    strictness: &#39;high&#39;
+});
+</code></pre>
+<h3>Specific Categories</h3>
+<p>Monitor only specific content categories:</p>
+<pre><code class="language-javascript">const moderator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    categories: [&#39;hate&#39;, &#39;violence&#39;, &#39;sexual&#39;]
+    // Skips checking for: self-harm, harassment, etc.
+});
+</code></pre>
+<h3>PII Redaction Options</h3>
+<pre><code class="language-javascript">// Enable automatic PII redaction
+const moderator = new SafeguardAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    redactPII: true
+});
+
+// Use the PII detector directly for more control
+const text = &quot;Email: john@example.com, Phone: 555-1234&quot;;
+
+// Just detect (don&#39;t redact)
+const piiItems = moderator.detector.detect(text);
+console.log(piiItems);
+
+// Redact with different modes
+const masked = moderator.detector.redact(text, &#39;mask&#39;);
+const replaced = moderator.detector.redact(text, &#39;replace&#39;);
+</code></pre>
+<hr>
+<h2>Integration Patterns</h2>
+<h3>Pattern 1: Singleton Instance (Recommended)</h3>
+<p>Create a single shared instance across your application:</p>
+<pre><code class="language-javascript">// utils/safeguard.js
+const SafeguardAI = require(&#39;safeguard-ai&#39;);
+require(&#39;dotenv&#39;).config();
+
+let moderatorInstance = null;
+
+function getModerator() {
+    if (!moderatorInstance) {
+        moderatorInstance = new SafeguardAI({
+            apiKey: process.env.OPENAI_API_KEY,
+            strictness: &#39;medium&#39;,
+            redactPII: true
+        });
+    }
+    return moderatorInstance;
+}
+
+module.exports = getModerator;
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-javascript">const getModerator = require(&#39;./utils/safeguard&#39;);
+
+async function myFunction() {
+    const moderator = getModerator();
+    const result = await moderator.checkText(&quot;some text&quot;);
+}
+</code></pre>
+<h3>Pattern 2: Dependency Injection</h3>
+<pre><code class="language-javascript">// services/contentService.js
+class ContentService {
+    constructor(moderator) {
+        this.moderator = moderator;
+    }
+    
+    async createPost(content) {
+        const result = await this.moderator.checkText(content);
+        if (!result.safe) {
+            throw new Error(&#39;Content policy violation&#39;);
+        }
+        // Save post...
+    }
+}
+
+// app.js
+const moderator = new SafeguardAI({ /* config */ });
+const contentService = new ContentService(moderator);
+</code></pre>
+<h3>Pattern 3: Async Wrapper</h3>
+<p>For non-blocking moderation:</p>
+<pre><code class="language-javascript">const Queue = require(&#39;bull&#39;); // or any job queue
+const moderationQueue = new Queue(&#39;moderation&#39;);
+
+// Add to queue
+async function queueModeration(content, callback) {
+    const job = await moderationQueue.add({ content, callback });
+    return job.id;
+}
+
+// Process queue
+moderationQueue.process(async (job) =&gt; {
+    const { content } = job.data;
+    const result = await moderator.checkText(content);
+    // Handle result...
+    return result;
+});
+</code></pre>
+<hr>
+<h2>Testing Your Implementation</h2>
+<h3>Test Script</h3>
+<p>Create a test file to verify your setup:</p>
+<pre><code class="language-javascript">// test-safeguard.js
+const moderator = require(&#39;./safeguard&#39;);
+
+async function runTests() {
+    console.log(&#39;🧪 Running SafeguardAI Tests...\n&#39;);
+    
+    // Test 1: Safe content
+    console.log(&#39;Test 1: Safe content&#39;);
+    const test1 = await moderator.checkText(&quot;Hello, this is a friendly message!&quot;);
+    console.log(&#39;Result:&#39;, test1.safe ? &#39;✅ PASS&#39; : &#39;❌ FAIL&#39;);
+    console.log();
+    
+    // Test 2: PII detection
+    console.log(&#39;Test 2: PII detection&#39;);
+    const test2 = await moderator.checkText(&quot;Contact: john@example.com&quot;);
+    console.log(&#39;PII found:&#39;, test2.piiDetected.length &gt; 0 ? &#39;✅ PASS&#39; : &#39;❌ FAIL&#39;);
+    console.log(&#39;Redacted:&#39;, test2.cleanText);
+    console.log();
+    
+    // Test 3: Custom blocked words
+    console.log(&#39;Test 3: Custom blocked words&#39;);
+    moderator.rules.addBlockedWords([&#39;testword&#39;]);
+    const test3 = await moderator.checkText(&quot;Contains testword here&quot;);
+    console.log(&#39;Flagged:&#39;, test3.flagged ? &#39;✅ PASS&#39; : &#39;❌ FAIL&#39;);
+    console.log();
+    
+    console.log(&#39;✅ All tests completed!&#39;);
+}
+
+runTests().catch(console.error);
+</code></pre>
+<p>Run it:</p>
+<pre><code class="language-bash">node test-safeguard.js
+</code></pre>
+<hr>
+<h2>Production Checklist</h2>
+<p>Before deploying to production:</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> <strong>API Key Security</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> API key is in environment variables, not hardcoded</li>
+<li><input disabled="" type="checkbox"> <code>.env</code> file is in <code>.gitignore</code></li>
+<li><input disabled="" type="checkbox"> Environment variables are set on production server</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Error Handling</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> All API calls are wrapped in try-catch blocks</li>
+<li><input disabled="" type="checkbox"> Graceful degradation strategy defined (fail open vs fail closed)</li>
+<li><input disabled="" type="checkbox"> Error logging implemented</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Performance</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Consider caching moderation results for identical content</li>
+<li><input disabled="" type="checkbox"> Implement rate limiting to avoid API quota issues</li>
+<li><input disabled="" type="checkbox"> Set appropriate timeouts</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Monitoring</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Log moderation failures</li>
+<li><input disabled="" type="checkbox"> Track flagged content metrics</li>
+<li><input disabled="" type="checkbox"> Monitor API usage and costs</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Privacy &amp; Compliance</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Never log actual PII values</li>
+<li><input disabled="" type="checkbox"> Document PII handling in privacy policy</li>
+<li><input disabled="" type="checkbox"> Ensure GDPR/CCPA compliance</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> <strong>Testing</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Unit tests for moderation logic</li>
+<li><input disabled="" type="checkbox"> Integration tests with API</li>
+<li><input disabled="" type="checkbox"> Test with various content types</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>Issue: &quot;API key is required&quot;</h3>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-javascript">// Make sure .env file exists and contains:
+OPENAI_API_KEY=sk-your-actual-key
+
+// Make sure dotenv is loaded
+require(&#39;dotenv&#39;).config();
+
+// Verify the key is loaded
+console.log(&#39;API Key:&#39;, process.env.OPENAI_API_KEY ? &#39;Loaded ✅&#39; : &#39;Missing ❌&#39;);
+</code></pre>
+<h3>Issue: &quot;Module not found: safeguard-ai&quot;</h3>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-bash"># Reinstall the package
+npm install safeguard-ai
+
+# Clear npm cache if needed
+npm cache clean --force
+npm install
+</code></pre>
+<h3>Issue: API rate limit errors</h3>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-javascript">// Implement exponential backoff
+async function checkTextWithRetry(text, maxRetries = 3) {
+    for (let i = 0; i &lt; maxRetries; i++) {
+        try {
+            return await moderator.checkText(text);
+        } catch (error) {
+            if (error.response?.status === 429 &amp;&amp; i &lt; maxRetries - 1) {
+                await new Promise(resolve =&gt; setTimeout(resolve, 1000 * Math.pow(2, i)));
+                continue;
+            }
+            throw error;
+        }
+    }
+}
+</code></pre>
+<h3>Issue: Slow response times</h3>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li><strong>Cache results:</strong></li>
+</ol>
+<pre><code class="language-javascript">const cache = new Map();
+
+async function checkTextCached(text) {
+    if (cache.has(text)) {
+        return cache.get(text);
+    }
+    const result = await moderator.checkText(text);
+    cache.set(text, result);
+    return result;
+}
+</code></pre>
+<ol start="2">
+<li><strong>Process in background:</strong></li>
+</ol>
+<pre><code class="language-javascript">// Queue moderation checks asynchronously
+// Allow content temporarily, moderate in background
+</code></pre>
+<h3>Issue: TypeScript type definitions not found</h3>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-bash"># Types are included in the package
+# If you have issues, try:
+npm install --save-dev @types/node
+</code></pre>
+<hr>
+<h2>Next Steps</h2>
+<p>Now that you have SafeguardAI set up:</p>
+<ol>
+<li><strong>Explore the <a href="./API.md">API Documentation</a></strong> for detailed API reference</li>
+<li><strong>Check <a href="../examples/">Examples</a></strong> for more implementation patterns</li>
+<li><strong>Review <a href="./PRICING_MODEL.md">Pricing Model</a></strong> to understand costs</li>
+<li><strong>Join our community</strong> for support and updates</li>
+</ol>
+<hr>
+<h2>Additional Resources</h2>
+<ul>
+<li><strong>GitHub Repository</strong>: <a href="https://github.com/Mehulbirare/ai-safety-toolkit">https://github.com/Mehulbirare/ai-safety-toolkit</a></li>
+<li><strong>NPM Package</strong>: <a href="https://www.npmjs.com/package/safeguard-ai">https://www.npmjs.com/package/safeguard-ai</a></li>
+<li><strong>OpenAI Moderation API</strong>: <a href="https://platform.openai.com/docs/guides/moderation">https://platform.openai.com/docs/guides/moderation</a></li>
+<li><strong>Report Issues</strong>: <a href="https://github.com/Mehulbirare/ai-safety-toolkit/issues">https://github.com/Mehulbirare/ai-safety-toolkit/issues</a></li>
+</ul>
+<hr>
+<h2>Need Help?</h2>
+<ul>
+<li><strong>Documentation</strong>: Check the <code>/docs</code> folder</li>
+<li><strong>Examples</strong>: See <code>/examples</code> folder for working code</li>
+<li><strong>Issues</strong>: Open an issue on GitHub</li>
+<li><strong>Questions</strong>: Start a discussion on GitHub Discussions</li>
+</ul>
+<hr>
+<p><strong>Happy coding! 🛡️</strong></p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

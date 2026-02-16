@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeguardAI API Documentation - SafeguardAI Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-primary: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.1);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .home-link {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        p code, li code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #79c0ff;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* Checkboxes (for task lists) */
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            pre {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-halved"></i>
+                SafeguardAI
+            </div>
+            
+        <div class="doc-nav">
+            <a href="index.html" class="nav-link home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="GETTING_STARTED.html" class="nav-link ">GETTING STARTED</a>
+            <a href="API.html" class="nav-link active">API</a>
+            <a href="POST_INSTALL_GUIDE.html" class="nav-link ">POST INSTALL GUIDE</a>
+            <a href="QUICK_REFERENCE.html" class="nav-link ">QUICK REFERENCE</a>
+            <a href="PRICING_MODEL.html" class="nav-link ">PRICING MODEL</a>
+            <a href="LAUNCH_BLOG_POST.html" class="nav-link ">LAUNCH BLOG POST</a>
+        </div>
+    
+        </aside>
+        <main class="main-content">
+            <article class="doc-content">
+                <h1>SafeguardAI API Documentation</h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#core-api">Core API</a></li>
+<li><a href="#pii-detection">PII Detection</a></li>
+<li><a href="#custom-rules">Custom Rules</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install safeguard-ai
+</code></pre>
+<h2>Configuration</h2>
+<h3>SafeguardAI Constructor</h3>
+<pre><code class="language-typescript">new SafeguardAI(config?: SafeguardAIConfig)
+</code></pre>
+<p><strong>Config Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>apiKey</code></td>
+<td><code>string</code></td>
+<td><code>undefined</code></td>
+<td>OpenAI API key for moderation</td>
+</tr>
+<tr>
+<td><code>providers</code></td>
+<td><code>string[]</code></td>
+<td><code>[&#39;openai&#39;]</code></td>
+<td>List of provider names to use</td>
+</tr>
+<tr>
+<td><code>strictness</code></td>
+<td><code>&#39;low&#39; | &#39;medium&#39; | &#39;high&#39;</code></td>
+<td><code>&#39;medium&#39;</code></td>
+<td>Moderation strictness level</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td><code>string[]</code></td>
+<td><code>undefined</code></td>
+<td>Specific categories to check</td>
+</tr>
+<tr>
+<td><code>redactPII</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Automatically redact PII in results</td>
+</tr>
+</tbody></table>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">const moderator = new SafeguardAI({
+  apiKey: &#39;sk-...&#39;,
+  providers: [&#39;openai&#39;],
+  strictness: &#39;high&#39;,
+  redactPII: true
+});
+</code></pre>
+<h2>Core API</h2>
+<h3>checkText()</h3>
+<p>Check text for safety violations, PII, and custom rules.</p>
+<pre><code class="language-typescript">async checkText(text: string): Promise&lt;CheckResult&gt;
+</code></pre>
+<p><strong>Returns:</strong></p>
+<pre><code class="language-typescript">interface CheckResult {
+  safe: boolean;                    // Overall safety status
+  flagged: boolean;                 // Whether content was flagged
+  categories: {                     // Moderation categories
+    [key: string]: {
+      detected: boolean;
+      score: number;                // 0-1 confidence score
+      severity?: &#39;low&#39; | &#39;medium&#39; | &#39;high&#39; | &#39;critical&#39;;
+    };
+  };
+  piiDetected: PIIDetected[];       // Detected PII items
+  cleanText: string;                // Text with PII redacted
+  suggestions: string[];            // Recommendations
+}
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-javascript">const result = await moderator.checkText(&quot;Your text here&quot;);
+
+if (!result.safe) {
+  console.log(&#39;Content flagged:&#39;, result.categories);
+  console.log(&#39;Suggestions:&#39;, result.suggestions);
+}
+</code></pre>
+<h2>PII Detection</h2>
+<h3>Supported PII Types</h3>
+<ul>
+<li><strong>email</strong>: Email addresses</li>
+<li><strong>phone</strong>: Phone numbers (US and generic formats)</li>
+<li><strong>ssn</strong>: Social Security Numbers</li>
+<li><strong>credit_card</strong>: Credit card numbers</li>
+<li><strong>ip_address</strong>: IP addresses</li>
+<li><strong>date</strong>: Date patterns</li>
+</ul>
+<h3>Redaction Modes</h3>
+<pre><code class="language-typescript">type RedactionMode = &#39;replace&#39; | &#39;mask&#39; | &#39;fake&#39;;
+</code></pre>
+<ul>
+<li><strong>replace</strong>: Replace with <code>[REDACTED_TYPE]</code></li>
+<li><strong>mask</strong>: Partially mask (e.g., <code>joh***@email.com</code>)</li>
+<li><strong>fake</strong>: Replace with fake data</li>
+</ul>
+<h3>Direct PII Detection</h3>
+<pre><code class="language-javascript">const detector = moderator.detector;
+
+// Detect PII
+const piiItems = detector.detect(&quot;Email: john@example.com&quot;);
+
+// Redact with mode
+const result = detector.redact(&quot;Email: john@example.com&quot;, &#39;mask&#39;);
+console.log(result.redactedText); // &quot;Email: joh***@example.com&quot;
+</code></pre>
+<h2>Custom Rules</h2>
+<h3>Add Blocked Words</h3>
+<pre><code class="language-javascript">moderator.rules.addBlockedWords([&#39;spam&#39;, &#39;scam&#39;, &#39;phishing&#39;]);
+</code></pre>
+<h3>Add Custom Patterns</h3>
+<pre><code class="language-javascript">// Detect internal IDs
+moderator.rules.addPattern(/EMP-\d{6}/g, &#39;EmployeeID&#39;);
+
+// Detect API keys
+moderator.rules.addPattern(/API-KEY-[A-Z0-9]{20}/g, &#39;API_KEY&#39;);
+</code></pre>
+<h2>Examples</h2>
+<h3>Basic Chatbot Filter</h3>
+<pre><code class="language-javascript">async function processChatMessage(userMessage) {
+  const result = await moderator.checkText(userMessage);
+  
+  if (!result.safe) {
+    return {
+      error: &#39;Message violates content policy&#39;,
+      categories: result.categories
+    };
+  }
+  
+  return { message: result.cleanText };
+}
+</code></pre>
+<h3>Express.js Middleware</h3>
+<pre><code class="language-javascript">async function safeguardMiddleware(req, res, next) {
+  if (!req.body.content) return next();
+  
+  const result = await moderator.checkText(req.body.content);
+  
+  if (!result.safe) {
+    return res.status(400).json({
+      error: &#39;Content flagged&#39;,
+      details: result.categories
+    });
+  }
+  
+  req.body.cleanContent = result.cleanText;
+  next();
+}
+</code></pre>
+<h3>Batch Processing</h3>
+<pre><code class="language-javascript">async function checkMultipleTexts(texts) {
+  const results = await Promise.all(
+    texts.map(text =&gt; moderator.checkText(text))
+  );
+  
+  return results.filter(r =&gt; !r.safe);
+}
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-javascript">try {
+  const result = await moderator.checkText(text);
+} catch (error) {
+  console.error(&#39;Moderation failed:&#39;, error);
+  // Handle error (retry, fallback, etc.)
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Cache Results</strong>: Cache moderation results for identical content</li>
+<li><strong>Rate Limiting</strong>: Implement rate limiting to avoid API quota issues</li>
+<li><strong>Graceful Degradation</strong>: Handle API failures gracefully</li>
+<li><strong>User Feedback</strong>: Provide clear feedback when content is flagged</li>
+<li><strong>Privacy</strong>: Never log sensitive PII data</li>
+</ol>
+<h2>Coming Soon</h2>
+<ul>
+<li>Image moderation</li>
+<li>Multi-provider fallback</li>
+<li>Response caching</li>
+<li>Batch processing optimizations</li>
+<li>Additional providers (Perspective API, Azure, AWS)</li>
+</ul>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>

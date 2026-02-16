@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏁 Post-Installation Guide: Next Steps - SafeguardAI Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #161b22;
+            --accent-primary: #00d2ff;
+            --accent-secondary: #3a7bd5;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --code-bg: #0d1117;
+            --border-color: #30363d;
+            --gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-primary);
+            background: rgba(0, 210, 255, 0.1);
+            border-left-color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .home-link {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 0;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        p code, li code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #79c0ff;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* Checkboxes (for task lists) */
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            pre {
+                padding: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fas fa-shield-halved"></i>
+                SafeguardAI
+            </div>
+            
+        <div class="doc-nav">
+            <a href="index.html" class="nav-link home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="GETTING_STARTED.html" class="nav-link ">GETTING STARTED</a>
+            <a href="API.html" class="nav-link ">API</a>
+            <a href="POST_INSTALL_GUIDE.html" class="nav-link active">POST INSTALL GUIDE</a>
+            <a href="QUICK_REFERENCE.html" class="nav-link ">QUICK REFERENCE</a>
+            <a href="PRICING_MODEL.html" class="nav-link ">PRICING MODEL</a>
+            <a href="LAUNCH_BLOG_POST.html" class="nav-link ">LAUNCH BLOG POST</a>
+        </div>
+    
+        </aside>
+        <main class="main-content">
+            <article class="doc-content">
+                <h1>🏁 Post-Installation Guide: Next Steps</h1>
+<p>So you&#39;ve just run <code>npm install safeguard-ai</code>. What now? This guide walks you through the first 10 minutes of using the library to ensure your implementation is robust and safe.</p>
+<hr>
+<h2>🏎️ The 1-Minute Verification</h2>
+<p>The quickest way to verify everything is working is to run a small test script.</p>
+<ol>
+<li>Create a file named <code>safeguard-test.js</code>.</li>
+<li>Paste this code:</li>
+</ol>
+<pre><code class="language-javascript">const SafeguardAI = require(&#39;safeguard-ai&#39;);
+
+async function verify() {
+  console.log(&#39;🔍 Initializing SafeguardAI...&#39;);
+  const moderator = new SafeguardAI();
+  
+  // Test 1: PII Detection (Doesn&#39;t require API key)
+  console.log(&#39;Test 1: Local PII Detection&#39;);
+  const result = await moderator.checkText(&quot;Email me at test@example.com&quot;);
+  if (result.piiDetected.length &gt; 0) {
+    console.log(&#39;✅ PII Detection working: Found&#39;, result.piiDetected[0].type);
+  }
+
+  console.log(&#39;\n🚀 Installation verified! Next: Add your OpenAI API key to test full moderation.&#39;);
+}
+
+verify().catch(err =&gt; console.error(&#39;❌ Error:&#39;, err.message));
+</code></pre>
+<ol start="3">
+<li>Run it: <code>node safeguard-test.js</code></li>
+</ol>
+<hr>
+<h2>🛠️ Essential Setup Phase</h2>
+<h3>1. Secure Your API Key</h3>
+<p>SafeguardAI uses OpenAI&#39;s high-performance moderation models by default. You MUST secure your key.</p>
+<p><strong>Don&#39;t do this:</strong></p>
+<pre><code class="language-javascript">const moderator = new SafeguardAI({ apiKey: &#39;sk-12345...&#39; }); // ❌ UNSAFE
+</code></pre>
+<p><strong>Do this:</strong></p>
+<ol>
+<li>Install <code>dotenv</code>: <code>npm install dotenv</code></li>
+<li>Create a <code>.env</code> file: <code>OPENAI_API_KEY=your_key_here</code></li>
+<li>Load it:</li>
+</ol>
+<pre><code class="language-javascript">require(&#39;dotenv&#39;).config();
+const moderator = new SafeguardAI({ apiKey: process.env.OPENAI_API_KEY }); // ✅ SAFE
+</code></pre>
+<hr>
+<h2>🏗️ Choose Your Implementation Pattern</h2>
+<p>Depending on your application type, follow one of these patterns:</p>
+<h3>A. The &quot;Gatekeeper&quot; (Input Validation)</h3>
+<p>Use this if you want to block messages BEFORE they hit your database or LLM.</p>
+<pre><code class="language-javascript">async function handleUserInput(input) {
+  const check = await moderator.checkText(input);
+  if (!check.safe) {
+    throw new Error(&quot;Sorry, your message contains restricted content.&quot;);
+  }
+  return processMessage(check.cleanText); // Processes redacted version
+}
+</code></pre>
+<h3>B. The &quot;Sanitizer&quot; (Output Cleaning)</h3>
+<p>Use this to ensure your AI&#39;s responses don&#39;t leak sensitive info or generate toxic content.</p>
+<pre><code class="language-javascript">const rawResponse = await openai.createChatCompletion(...);
+const safeResponse = await moderator.checkText(rawResponse.choices[0].message.content);
+
+displayToUser(safeResponse.cleanText); // Shows redacted/cleaned output
+</code></pre>
+<h3>C. The &quot;Compliance Officer&quot; (Automated Audit)</h3>
+<p>Use this to scan batch data for GDPR/HIPAA compliance.</p>
+<pre><code class="language-javascript">const logs = await db.getLogs();
+for (const log of logs) {
+  const audit = await moderator.checkText(log.content);
+  if (audit.piiDetected.length &gt; 0) {
+      await db.markForRedaction(log.id, audit.cleanText);
+  }
+}
+</code></pre>
+<hr>
+<h2>🛡️ Best Practices for Production</h2>
+<ol>
+<li><strong>Fail-Safe Strategy</strong>: Decide what happens if the API fails.<ul>
+<li><em>Restrictive</em>: Block the user if the safety check fails to run.</li>
+<li><em>Permissive</em>: Allow the user but log the failure for manual review.</li>
+</ul>
+</li>
+<li><strong>Strictness Tuning</strong>: Start with <code>medium</code>. Switch to <code>high</code> if you&#39;re building a kid-friendly app or a corporate bot.</li>
+<li><strong>Custom Blocklists</strong>: The AI might miss your specific company&#39;s &quot;no-no&quot; words. Use <code>moderator.rules.addBlockedWords([&#39;competitor_x&#39;, &#39;secret_project_y&#39;])</code>.</li>
+</ol>
+<hr>
+<h2>❓ Troubleshooting Common Errors</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Error</th>
+<th align="left">Cause</th>
+<th align="left">Solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>API key is required</code></td>
+<td align="left">Environment variable not loaded</td>
+<td align="left">Ensure <code>require(&#39;dotenv&#39;).config()</code> is at the top of your main entry file.</td>
+</tr>
+<tr>
+<td align="left"><code>Rate limit exceeded</code></td>
+<td align="left">Too many requests to OpenAI</td>
+<td align="left">Implement a queue (like BullMQ) or simple throttling.</td>
+</tr>
+<tr>
+<td align="left"><code>PII not detected</code></td>
+<td align="left">Pattern mismatch</td>
+<td align="left">The default detector handles standard formats. Use <code>addPattern()</code> for custom IDs.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🔗 Deep Dives</h2>
+<ul>
+<li><a href="./API.md">Full API Reference</a></li>
+<li><a href="./GETTING_STARTED.md#configuration-options">Configuration Guide</a></li>
+<li><a href="../examples/express-middleware.js">Example: Express.js Integration</a></li>
+</ul>
+<p><strong>Need help?</strong> Open an issue on <a href="https://github.com/Mehulbirare/ai-safety-toolkit/issues">GitHub Issues</a>.</p>
+
+            </article>
+        </main>
+    </div>
+</body>
+</html>
