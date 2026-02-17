@@ -33,7 +33,11 @@
         "safety",
         "ai-safety",
         "llm",
-        "content-filtering"
+        "content-filtering",
+        "safeguard",
+        "safeguard-ai",
+
+        
     ],
     "author": "Mehul Birare",
     "license": "MIT",
