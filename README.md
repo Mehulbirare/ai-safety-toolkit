@@ -15,11 +15,15 @@ npm install safeguard-ai
 ```
 
 ```javascript
-const SafeguardAI = require('safeguard-ai');
+// CommonJS
+const { SafeguardAI } = require('safeguard-ai');
+// or ESM / TypeScript
+// import { SafeguardAI } from 'safeguard-ai';
 
-const moderator = new SafeguardAI();
+// PII detection and custom rules run locally with no API key.
+// Provide an OpenAI API key to also enable AI text moderation.
+const moderator = new SafeguardAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Basic usage (requires API key unless using mock)
 const result = await moderator.checkText("Check this text for safety");
 
 if (!result.safe) {
@@ -102,7 +106,8 @@ const result = await moderator.checkText("Your text here");
 const moderator = new SafeguardAI({
   apiKey: 'your-openai-api-key',
   providers: ['openai'],
-  strictness: 'medium'
+  strictness: 'medium',
+  redactPII: true // when true, `result.cleanText` has PII redacted
 });
 ```
 
@@ -129,6 +134,14 @@ moderator.rules.addPattern(/\d{3}-\d{2}-\d{4}/g, 'SSN');
 | PII Detection | ✅ | Limited |
 | Custom rules | ✅ | ❌ |
 | TypeScript | ✅ | ✅ |
+
+## 📝 Changelog
+
+### 1.0.2
+- **Security:** Upgraded `axios` to `^1.17.0`, resolving several advisories (SSRF via `NO_PROXY` bypass, prototype-pollution auth bypass, JSON response tampering, CRLF injection).
+- **Security:** The OpenAI provider no longer logs raw request errors, preventing the `Authorization: Bearer <apiKey>` header from leaking into application logs.
+- **Fix:** Guard against unexpected OpenAI API response shapes instead of throwing an unhandled `TypeError`.
+- **Fix:** Corrected invalid `package.json` (a trailing comma broke `npm install`/`npm publish`).
 
 ## 🤝 Contributing
 
