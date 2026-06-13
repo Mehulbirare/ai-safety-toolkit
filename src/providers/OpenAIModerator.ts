@@ -23,7 +23,10 @@ export class OpenAIModerator implements ModeratorProvider {
                 }
             );
 
-            const result = response.data.results[0];
+            const result = response.data?.results?.[0];
+            if (!result || typeof result.categories !== 'object' || result.categories === null) {
+                throw new Error("Unexpected response shape from OpenAI moderation API.");
+            }
             const categories: any = {};
 
             // Map OpenAI categories to our schema
@@ -48,7 +51,14 @@ export class OpenAIModerator implements ModeratorProvider {
                 suggestions: result.flagged ? ["Content flagged by OpenAI moderation."] : []
             };
         } catch (error) {
-            console.error("OpenAI Moderation Error:", error);
+            // Never log the raw error: an axios error embeds the request config,
+            // including the `Authorization: Bearer <apiKey>` header, which would
+            // leak the API key into application logs. Log only a safe message.
+            const status = (error as any)?.response?.status;
+            const message = error instanceof Error ? error.message : String(error);
+            console.error(
+                `OpenAI Moderation Error${status ? ` (HTTP ${status})` : ''}: ${message}`
+            );
             throw new Error("Failed to moderate text with OpenAI.");
         }
     }
